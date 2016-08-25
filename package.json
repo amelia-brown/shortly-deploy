@@ -12,6 +12,7 @@
     "start": "grunt build && grunt upload",
     "test": "grunt test",
     "lint": "eslint ./",
+    "push": "grunt pushToMaster",
     "deploy": "grunt deploy"
   },
   "dependencies": {

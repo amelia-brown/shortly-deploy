@@ -66,6 +66,9 @@ module.exports = function(grunt) {
     shell: {
       prodServer: {
         command: 'git add . && git commit && git push live master'
+      },
+      localPush: {
+        command: 'git add . && git commit && git push origin master'
       }
     },
   });
@@ -102,12 +105,16 @@ module.exports = function(grunt) {
 
   grunt.registerTask('upload', function(n) {
     if (grunt.option('prod')) {
-      grunt.task.run(['test', 'shell' ]);
+      grunt.task.run(['test', 'shell:prodServer' ]);
       // add your production server task here
     } else {
       grunt.task.run([ 'server-dev', 'watch' ]);
     }
   });
+
+  grunt.registerTask('pushToMaster', [
+    'shell:localPush'
+  ]);
 
   grunt.registerTask('deploy', [
     // add your deploy tasks here
