@@ -11,7 +11,8 @@
   "scripts": {
     "start": "grunt build && grunt upload",
     "test": "grunt test",
-    "lint": "eslint ./"
+    "lint": "eslint ./",
+    "deploy": "grunt deploy"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -41,6 +42,8 @@
     "sqlite3": "^3.1.4"
   },
   "devDependencies": {
+    "karma": "^1.2.0",
+    "karma-nyan-reporter": "^0.2.4",
     "supertest": "^1.2.0"
   }
 }
