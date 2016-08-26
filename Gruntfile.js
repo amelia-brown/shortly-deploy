@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         separator: ';'
       },
       dist: {
-        src: ['public/client/*.js'],
+        src: ['public/client/**/*.js'],
         dest: 'public/dist/built.js'
       }
     },
@@ -44,6 +44,14 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      options: {
+        keepSpecialComments: 0
+      },
+      dist: {
+        files: {
+          'public/dist/style.min.css': 'public/style.css'
+        }
+      }
     },
 
     watch: {
@@ -95,8 +103,8 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'test',
-    'eslint',
+   // 'test',
+  //  'eslint',
     'concat',
     'uglify',
     //'watch'

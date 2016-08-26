@@ -5,6 +5,8 @@ mongoose.connect('mongodb://localhost:27017');
 var Schema = mongoose.Schema;
 var Model = mongoose.Model;
 var util = require('../lib/utility');
+var crypto = require('crypto');
+
 
 db.urls = new Schema({
   url: String,
@@ -14,6 +16,23 @@ db.urls = new Schema({
   visits: Number
 }, { collection: 'urls'}
 );
+
+db.urls.pre('save', function(next) {
+  var url = this;
+  var shasum = crypto.createHash('sha1');
+  console.log('shasuuuuum', shasum);
+  shasum.update(this.url);
+  url.code = shasum.digest('hex').slice(0, 5);
+  next();
+  // model.set('code', shasum.digest('hex').slice(0, 5));
+
+});
+
+//     this.on('creating', function(model, attrs, options) {
+//       var shasum = crypto.createHash('sha1');
+//       shasum.update(model.get('url'));
+//       model.set('code', shasum.digest('hex').slice(0, 5));
+//     });
 
 db.users = new Schema({
   username: String,

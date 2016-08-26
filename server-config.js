@@ -19,7 +19,8 @@ app.use(cookieParser('shhhh, very secret'));
 app.use(session({
   secret: 'shhh, it\'s a secret',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {maxAge: 60000}
 }));
 
 app.get('/', util.checkUser, handler.renderIndex);
